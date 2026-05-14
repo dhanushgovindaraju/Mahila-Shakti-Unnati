@@ -1,0 +1,85 @@
+:root{
+  --bg:#f6efe6;
+  --muted:#7a7a7a;
+  --green:#1b6b3a;
+  --card:#ffffff;
+  --bottom-nav-height:86px;
+}
+*{box-sizing:border-box;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
+.app-root, html, body, #root {height:100%}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#f4efe3);-webkit-font-smoothing:antialiased}
+.app-root{display:flex;justify-content:center;align-items:center;padding:28px 12px}
+.phone-frame{width:100%;max-width:420px;min-height:100vh;background:var(--bg);border-radius:28px;box-shadow:0 30px 60px rgba(0,0,0,0.25);overflow:hidden;border:1px solid rgba(0,0,0,0.06);display:flex;flex-direction:column;position:relative}
+.app-shell{width:100%;background:transparent;display:flex;flex-direction:column;min-height:100vh;position:relative;overflow-y:auto}
+/* Safe area for top (status bar) */
+.phone-frame{padding-top:env(safe-area-inset-top,12px)}
+.app-header{background:linear-gradient(180deg,var(--green),#1b6b3a);color:white;padding:18px 18px 18px 18px;border-bottom-left-radius:20px;border-bottom-right-radius:20px}
+.app-header{padding-top:calc(18px + env(safe-area-inset-top,0px))}
+
+.app-shell{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+.header-inner h1{margin:0;font-size:20px}
+.header-inner .sub{margin:0;font-size:12px;opacity:0.9}
+.content{padding:14px;padding-bottom:calc(var(--bottom-nav-height,86px) + 24px);flex:1}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;grid-auto-rows:1fr}
+.card{min-height:92px}
+.card{display:flex;flex-direction:column;justify-content:space-between}
+.card{background:var(--card);border-radius:12px;box-shadow:0 8px 24px rgba(27,107,58,0.08);padding:12px;transition:transform .12s ease}
+.card:hover{transform:translateY(-4px)}
+.card-title{font-size:13px;color:var(--muted)}
+.card-value{font-size:18px;margin-top:8px;font-weight:700}
+.panel{background:var(--card);padding:12px;border-radius:14px;box-shadow:0 8px 22px rgba(0,0,0,0.06);margin:12px}
+.form-row{display:flex;flex-direction:column;gap:10px}
+.form-row.horizontal{flex-direction:row}
+.form-row input,.form-row select{width:100%;padding:12px;border-radius:12px;border:1px solid #e9e6e0;transition:box-shadow .12s ease,border-color .12s ease}
+.form-row input:focus,.form-row select:focus{outline:none;border-color:var(--green);box-shadow:0 6px 18px rgba(27,107,58,0.12)}
+.btn{background:var(--green);color:white;border:none;padding:12px;border-radius:12px;transition:transform .08s ease,box-shadow .08s ease}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+.field-error{color:#b00020;font-size:13px;margin-top:6px}
+.btn.small{padding:6px 8px;font-size:13px}
+.btn.small.danger{background:#d9534f}
+.btn.danger{background:#d9534f}
+.list{display:flex;flex-direction:column;gap:8px}
+.list-card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.04);overflow:hidden}
+.member-card .muted{margin-top:6px}
+.list-title{font-weight:700}
+.muted{color:var(--muted);font-size:12px}
+.section h3{margin:8px 0}
+.activity-list{display:flex;flex-direction:column;gap:6px}
+.activity-item{background:#fff;padding:10px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.03);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.activity-item .muted{display:block;font-size:12px;margin-top:6px}
+.bottom-nav{position:absolute;left:12px;right:12px;bottom:12px;display:flex;justify-content:space-between;padding:8px;background:transparent;z-index:40}
+.bottom-nav button{background:var(--card);border-radius:14px;padding:10px 6px;border:none;display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;margin:0 6px;box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+.bottom-nav button .icon{color:var(--green);width:22px;height:22px}
+.bottom-nav button.active{background:linear-gradient(180deg,#e8f6ec,#ffffff)}
+.bottom-nav .label{font-size:12px;color:var(--muted)}
+
+/* Responsive typography and breakpoints for small phones */
+@media (max-width: 320px) {
+  :root{font-size:14px}
+  .cards{gap:8px}
+  .card-value{font-size:16px}
+  .phone-frame{border-radius:18px}
+}
+@media (min-width:321px) and (max-width:375px) {
+  :root{font-size:15px}
+  .card-value{font-size:18px}
+}
+@media (min-width:376px) and (max-width:425px) {
+  :root{font-size:16px}
+  .card-value{font-size:20px}
+}
+
+@media(min-width:700px){
+  .app-root{padding:36px}
+  .phone-frame{width:390px}
+}
+
+/* prevent horizontal scroll */
+body,html{overflow-x:hidden}
+
+/* center and phone frame look */
+.app-shell{margin: 12px auto 80px auto}
+.app-shell::after{content:'';display:block;height:18px}
+
