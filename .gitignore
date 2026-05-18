@@ -1,6 +1,6 @@
 # Node modules
 node_modules/
-android/
+
 # Vite / build output
 dist/
 build/
